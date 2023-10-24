@@ -72,7 +72,8 @@ public class Contact{
 
     @Override
     public String toString() {
-        return String.format("Контакт [Имя=%s, Фамилия=%s, Отчество=%s, Дата рождения=%d.%d.%d, Телефон=%d, Пол=%s]", firstName, secondName, patronymicName, birthday.getDayOfMonth(), birthday.getMonthValue(), birthday.getYear(), phoneNumber, sex);
+        return String.format("Контакт [Имя=%s, Фамилия=%s, Отчество=%s, Дата рождения=%d.%d.%d, Телефон=%d, Пол=%s]", 
+        firstName, secondName, patronymicName, birthday.getDayOfMonth(), birthday.getMonthValue(), birthday.getYear(), phoneNumber, sex);
     }
 
     

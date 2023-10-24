@@ -37,7 +37,7 @@ public class Program {
         Contact contact = Input.checkData(stringFromUser);
         try{
             WriteToFile.writeDataToFile(contact);
-            System.out.println(contact.toString()+ " успешно записан");
+            System.out.println(contact.toString() + " успешно записан");
         } catch (Exception e) {
             throw new RuntimeException("Ошибка записи");
         }
