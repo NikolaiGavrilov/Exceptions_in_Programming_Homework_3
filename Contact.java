@@ -2,8 +2,8 @@ import java.time.LocalDate;
 
 public class Contact{
     
+    public String surname;
     public String firstName;
-    public String secondName;
     public String patronymicName;
     public LocalDate birthday;
     public Long phoneNumber;
@@ -12,10 +12,10 @@ public class Contact{
     public Contact() {
     }
 
-    public Contact(String firstName, String secondName, String patronymicName, LocalDate birthday, Long phoneNumber,
+    public Contact(String surname, String firstName, String patronymicName, LocalDate birthday, Long phoneNumber,
             char sex) {
+        this.surname = surname;
         this.firstName = firstName;
-        this.secondName = secondName;
         this.patronymicName = patronymicName;
         this.birthday = birthday;
         this.phoneNumber = phoneNumber;
@@ -30,12 +30,12 @@ public class Contact{
         this.firstName = firstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPatronymicName() {
@@ -72,8 +72,8 @@ public class Contact{
 
     @Override
     public String toString() {
-        return String.format("Контакт [Имя=%s, Фамилия=%s, Отчество=%s, Дата рождения=%d.%d.%d, Телефон=%d, Пол=%s]", 
-        firstName, secondName, patronymicName, birthday.getDayOfMonth(), birthday.getMonthValue(), birthday.getYear(), phoneNumber, sex);
+        return String.format("Контакт [Фамилия=%s, Имя=%s, Отчество=%s, Дата рождения=%d.%d.%d, Телефон=%d, Пол=%s]", 
+        surname, firstName, patronymicName, birthday.getDayOfMonth(), birthday.getMonthValue(), birthday.getYear(), phoneNumber, sex);
     }
 
     

@@ -3,15 +3,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Input {
-    
-    
-    
-    
+
     public static String inputData() {
         try (Scanner scan = new Scanner(System.in, "UTF-8")) {
-            System.out.println("Вам потребуется ввести следующие данные через пробелы: Фамилия Имя Отчество датарождения номертелефона пол");
+            System.out.println("Добро пожаловать! Вам просили передать, чтобы Вы ввели свои данные, это очень важно!");
             System.out.println("Образец заполнения:\nIvanov Ivan Ivanovich 13.12.1990 88005553535 m\nVasilyeva Vasilisa Vasilievna 12.10.1977 89265553555 f\n");
-            System.out.println("Введите данные:\n");
+            System.out.println("Введите свои данные через пробелы, следуя образцу выше:");
             String dataFromUser = scan.nextLine();
             return dataFromUser;
         } catch (Exception e) {
@@ -29,8 +26,8 @@ public class Input {
     public static Contact checkData (String stringToCheck){
         String[] dataToCheck = splitData(stringToCheck);
         Contact contact = new Contact();
-        contact.setFirstName(checkString(dataToCheck[0]));
-        contact.setSecondName(checkString(dataToCheck[1]));
+        contact.setSurname(checkString(dataToCheck[0]));
+        contact.setFirstName(checkString(dataToCheck[1]));
         contact.setPatronymicName(checkString(dataToCheck[2]));
         contact.setBirthday(checkDate(dataToCheck[3]));
         contact.setPhoneNumber(checkPhone(dataToCheck[4]));
@@ -49,8 +46,9 @@ public class Input {
         if (stringToCheck.length() < 10 || stringToCheck.length() > 10) {
             throw new DateLengthException("Ошибка в длине символов при наборе даты");
         }
-        String stringToCheckNew = stringToCheck.substring(0, 2) + '-'
-         + stringToCheck.substring(3, 5) + '-' + stringToCheck.substring(6, 10);
+        String stringToCheckNew = stringToCheck.substring(0, 2) 
+        + '-' + stringToCheck.substring(3, 5) 
+        + '-' + stringToCheck.substring(6, 10);
         LocalDate date = LocalDate.parse(stringToCheckNew, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         return date;
     }
