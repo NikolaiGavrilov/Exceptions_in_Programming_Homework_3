@@ -12,7 +12,7 @@ public class Input {
             String dataFromUser = scan.nextLine();
             return dataFromUser;
         } catch (Exception e) {
-            throw new RuntimeException ("Ошибка ввода");
+            throw new RuntimeException ("Ошибка ввода. Попробуйте еще раз!");
         }
     }
 
@@ -37,14 +37,20 @@ public class Input {
 
     public static String checkString(String stringToCheck) throws NullStringException{
         if (stringToCheck == null) {
-            throw new NullStringException("Ошибка нулевого значения в обязательном поле");
+            throw new NullStringException("Нулевое значение в обязательном поле недопустимо");
         }
         return stringToCheck;
     }
 
-    public static LocalDate checkDate(String stringToCheck) throws DateLengthException{
+    public static LocalDate checkDate(String stringToCheck) throws DateLengthException, DateWrongSymbolsException{
+        char[] charsToCheck = stringToCheck.toCharArray();
+        for (char c : charsToCheck) {
+            if(Character.isLetter(c)) {
+                throw new DateWrongSymbolsException("Некорректные символы в дате!");
+            }
+        }
         if (stringToCheck.length() < 10 || stringToCheck.length() > 10) {
-            throw new DateLengthException("Ошибка в длине символов при наборе даты");
+            throw new DateLengthException("Невозможная длина даты");
         }
         String stringToCheckNew = stringToCheck.substring(0, 2) 
         + '-' + stringToCheck.substring(3, 5) 
@@ -54,14 +60,20 @@ public class Input {
     }
 
     public static Long checkPhone(String stringToCheck) throws PhoneNumberLengthException, PhoneSymbolException{
+        char[] charsToCheck = stringToCheck.toCharArray();
+        for (char c : charsToCheck) {
+            if(Character.isLetter(c)) {
+                throw new PhoneSymbolException("Некорректные символы в набранном телефонном номере!");
+            }
+        }
         if (stringToCheck.length() < 11) {
             throw new PhoneNumberLengthException("Некорректная длина телефонного номера");
         }
         try {
             Long phoneNumber = Long.parseLong(stringToCheck);
             return phoneNumber;
-        } catch (NumberFormatException e) {
-            throw new PhoneSymbolException("Некорректный формат телефонного номера");
+        } catch (Exception e) {
+            throw new PhoneSymbolException("Ошибка чтения телефона");
         }
     }
 

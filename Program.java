@@ -33,13 +33,16 @@ import java.io.IOException;
 
 public class Program {
     public static void main(String[] args) {
-        String stringFromUser = Input.inputData();
-        Contact contact = Input.checkData(stringFromUser);
         try{
+            String stringFromUser = Input.inputData();
+            Contact contact = Input.checkData(stringFromUser);
             WriteToFile.writeDataToFile(contact);
             System.out.println(contact.toString() + " успешно записан");
         } catch (Exception e) {
-            throw new RuntimeException("Ошибка записи");
+            System.out.println("\nУПС! Произошла ошибка - " + e.getClass().getSimpleName() + ": " + e.getMessage());
+            System.out.println("Пожалуйста, попробуйте снова.");
+            
         }
+        
     }
 }
